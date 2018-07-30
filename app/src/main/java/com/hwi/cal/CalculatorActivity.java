@@ -105,6 +105,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.btnRun:
                 preview.setText(preview.getText()+"=");
+                Calculator();
                 break;
             case R.id.btnCancel:
                 preview.setText("");
@@ -118,9 +119,16 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
         int i = 0;
         String opData[] = new String[20];
         String tString = (String) preview.getText();
+        boolean DEBUG = true;
+
+        if(DEBUG)
+        {
+            System.out.println(tString);
+        }
+
         char arrs[] = tString.toCharArray();
         int strStart = 0, strEnd = 0, opCount = 0;
-        ArrayList<String> list = new ArrayList();
+        ArrayList<String> list = new ArrayList<>();
 
         for(i=0;i<tString.length();i++)
         {
@@ -147,7 +155,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
                 {
                     list.add("/");
                 }
-                else if (arrs[i] == '=')
+                if (arrs[i] != '=')
                 {
                     strStart = i + 1;
                     opCount++;
@@ -159,7 +167,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
         double temp2 = 0;
         double sum = 0;
 
-        // * 또는 /연산 우선
+        // * 또는 / 연산 우선
         for(i=0;i<list.size();)
         {
               String item = list.get(i);
@@ -170,7 +178,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
                      sum = temp1 * temp2;
                      opCal = true;
               }
-              else if (item.equals("/")
+              else if (item.equals("/"))
               {
                      temp1 = Double.parseDouble(list.get(i - 1));
                      temp2 = Double.parseDouble(list.get(i + 1));
@@ -192,7 +200,6 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
               {
                         i++;
               }
-              boolean DEBUG = true;
 
               if(DEBUG)
               {
@@ -203,6 +210,51 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
                      System.out.println("");
                      System.out.println(sum);
               }
+        }
+
+        //+ 또는 - 연산 우선
+        for(i=0;i<list.size();)
+        {
+            String item = list.get(i);
+            if (item.equals("+"))
+            {
+                temp1 = Double.parseDouble(list.get(i - 1));
+                temp2 = Double.parseDouble(list.get(i + 1));
+                sum = temp1 + temp2;
+                opCal = true;
+            }
+            else if (item.equals("-"))
+            {
+                temp1 = Double.parseDouble(list.get(i - 1));
+                temp2 = Double.parseDouble(list.get(i + 1));
+                sum = temp1 - temp2;
+                opCal = true;
+            }
+            else
+            {
+                opCal = false;
+            }
+
+            if(opCal)
+            {
+                list.set(i, sum+"");
+                list.remove(i + 1);
+                list.remove(i - 1);
+            }
+            else
+            {
+                i++;
+            }
+
+            if(DEBUG)
+            {
+                for(Object str : list)
+                {
+                    System.out.print(str);
+                }
+                System.out.println("");
+                System.out.println(sum);
+            }
         }
                 result.setText(sum+"");
     }
