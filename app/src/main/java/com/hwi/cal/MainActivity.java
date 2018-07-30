@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 {
     Button btnCal;
     Button btnWidget;
+    Button btnHwansan;
 
     // 1. 위젯을 정의한다.
     @Override
@@ -23,9 +24,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 2.정의된 위젯변수에 xml의 위젯 ID를 가져와서 담아준다.
         btnCal = (Button) findViewById(R.id.btnCal);
         btnWidget = (Button) findViewById(R.id.btnWidget);
+        btnHwansan = (Button) findViewById(R.id.btnHwansan);
         // 3. 변수(위젯)을 리스너에 달아준다.
         btnCal.setOnClickListener(this);
         btnWidget.setOnClickListener(this);
+        btnHwansan.setOnClickListener(this);
     }
 
     @Override
@@ -40,6 +43,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnWidget:
                 Intent intent2 = new Intent(this, WidgetActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.btnHwansan:
+                Intent intent3 = new Intent(this, hwansanActivity.class);
+                startActivity(intent3);
                 break;
         }
     }
