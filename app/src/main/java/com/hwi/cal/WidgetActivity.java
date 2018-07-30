@@ -8,7 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,6 +22,8 @@ public class WidgetActivity extends AppCompatActivity implements CompoundButton.
     CheckBox cbCherry;
     RadioGroup rg;
     Spinner sp;
+    SeekBar sb;
+    TextView seekTV;
     ArrayList<String> months = new ArrayList<>();
 
     @Override
@@ -35,6 +39,29 @@ public class WidgetActivity extends AppCompatActivity implements CompoundButton.
         cbApple.setOnCheckedChangeListener(this);
         cbBanana.setOnCheckedChangeListener(this);
         cbCherry.setOnCheckedChangeListener(this);
+
+        sb = (SeekBar) findViewById(R.id.seekBar);
+        seekTV = (TextView) findViewById(R.id.seekTV);
+        sb.setOnSeekBarChangeListener((new SeekBar.OnSeekBarChangeListener()
+        {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b)
+            {
+                seekTV.setText(progress+""); //중요 : setText 함수 값에 숫자만 넘기면 다운됨.
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar)
+            {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar)
+            {
+
+            }
+        }));
 
         sp = (Spinner) findViewById(R.id.sp);
         //데이터는 올해부터~100년전까지

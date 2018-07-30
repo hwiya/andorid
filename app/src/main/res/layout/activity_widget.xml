@@ -106,8 +106,9 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="103dp"
+        android:layout_height="100dp"
         android:layout_marginTop="24dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
@@ -120,5 +121,22 @@
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="239dp" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/seekTV"
+        android:layout_width="169dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="332dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/seekTV"
+        tools:layout_editor_absoluteX="27dp" />
 
 </android.support.constraint.ConstraintLayout>
